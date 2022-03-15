@@ -29,7 +29,7 @@ void pushBack(List& list, int& data)
 		list.tail->ptr_next = newnode;
 		list.tail = newnode;
 	}
-	
+
 }
 
 void printList(List& list)
@@ -45,15 +45,23 @@ void printList(List& list)
 
 void polcot(Node* cont)
 {
-	cont->ptr_prev->ptr_next = cont->ptr_next;
-	cont->ptr_next->ptr_prev = cont->ptr_prev;
+	Node* d = cont->ptr_next;
+	Node* f = cont->ptr_prev;
+	if (cont->ptr_prev != nullptr)
+	{
+		f->ptr_next = d;
+	}
+	if (cont->ptr_next != nullptr)
+	{
+		d->ptr_prev = f;
+	}
 }
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	List list;
-	int n,k;
+	int n, k;
 	cout << "Введите размер списка: ";
 	cin >> n;
 	for (int i = 1; i <= n; i++)
@@ -65,7 +73,7 @@ int main()
 	Node* cont = list.head;
 	while (cont != nullptr)
 	{
-		if ((cont->data) % 2 == 0)
+		if (cont->data % 2 == 0)
 		{
 			polcot(cont);
 		}
