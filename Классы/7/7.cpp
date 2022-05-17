@@ -174,9 +174,9 @@ ostream& operator<<(ostream& out, const Time& tmp)
 }
 istream& operator>>(istream& in, Time& tmp)
 {
-	cout << "\nmin?";
+	cout << "\nmin ";
 	in >> tmp.min;
-	cout << "\nsec?";
+	cout << "\nsec ";
 	in >> tmp.sec;
 	return in;
 }
