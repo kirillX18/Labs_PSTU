@@ -203,21 +203,21 @@ void Graph<T>::InsertVertex(const T& vertex) {
 
 template<class T>
 int Graph<T>::GetAmountEdges() {
-	int amount = 0;
-	if (!this->IsEmpty()) {
+	int amount = 0; // обнуляем счетчик
+	if (!this->IsEmpty()) { // проверяем, что граф не пуст
 		for (int i = 0, vertListSize = this->vertList.size();
 			i < vertListSize; ++i) {
 			for (int j = 0; j < vertListSize; ++j) {
 				if (this->adjMatrix[i][j] ==
 					this->adjMatrix[j][i] &&
-					this->adjMatrix[i][j] != 0)
-					amount += 1;
+					this->adjMatrix[i][j] != 0) // находим рёбра
+					amount += 1; // считаем количество рёбер
 			}
 		}
-		return (amount / 2);
+		return (amount / 2); // приводим счетчик к корректному результату и возвращаем его
 	}
 	else
-		return 0;
+		return 0; // если граф пуст, возвращаем 0
 }
 
 template<class T>
@@ -276,23 +276,22 @@ Graph<T>::~Graph() {
 
 Graph<int> makeGraph()
 {
-	Graph<int> graph;
-	int amountEdges, sourceVertex, targetVertex, edgeWeight;
-	cout << "Видите количество вершин графа: "; cin >> amountVerts; cout << endl;
-	cout << "Введите количество ребер графа: "; cin >> amountEdges; cout << endl;
+	Graph<int> graph; // создание графа имеюшего вершины с номерами 
+	int amountEdges, sourceVertex, targetVertex, edgeWeight; // создание необходимых переменных
+	cout << "Видите количество вершин графа: "; cin >> amountVerts; cout << endl; // ввод количества рёбер графа в переменную amountVerts
+	cout << "Введите количество ребер графа: "; cin >> amountEdges; cout << endl; // ввод количества рёбер графа в переменную amountEdges
 	for (int i = 1; i <= amountVerts; ++i) {
-		int* vertPtr = &i;
-		graph.InsertVertex(*vertPtr);
+		int* vertPtr = &i; // запоминаем адрес вершины с помощью указателя
+		graph.InsertVertex(*vertPtr); //передаём ссылку на вершину в функцию InsertVertex; происходит вставка вершины в вектор вершин
 	}
 
 	for (int i = 0; i < amountEdges; ++i) {
-		cout << "Исходная вершина: "; cin >> sourceVertex; cout << endl;
-		int* sourceVertPtr = &sourceVertex;
-		cout << "Конечная вершина: "; cin >> targetVertex; cout << endl;
-		int* targetVertPtr = &targetVertex;
+		cout << "Исходная вершина: "; cin >> sourceVertex; cout << endl; // ввод исходной вершины
+		int* sourceVertPtr = &sourceVertex; // запоминаем адрес исходной вершины
+		cout << "Конечная вершина: "; cin >> targetVertex; cout << endl; // ввод вершины до которой будет идти ребро
 
-		cout << "Вес ребра: "; cin >> edgeWeight; cout << endl;
-		graph.InsertEdge(*sourceVertPtr, *targetVertPtr, edgeWeight);
+		cout << "Вес ребра: "; cin >> edgeWeight; cout << endl; // ввод числового значения веса ребра в переменную edgeWeight
+		graph.InsertEdge(*sourceVertPtr, *targetVertPtr, edgeWeight);// вставка ребра весом edgeWeight между исходной и конечной вершинами
 	}
 	cout << endl;
 	return graph;
@@ -358,7 +357,7 @@ void setCoord(int i, int n)
 	vertC[i].y = y1;
 }
 
-void drawCircle(int x, int y, int R)
+void drawCircle(int x, int y, int R) //рисуем круг в заданных координатах
 {
 	glColor3f(1.0, 1.0, 0.0);
 	float x1, y1;
@@ -402,7 +401,7 @@ void drawVertex(int n)
 	}
 }
 
-void drawLine(int text, int x0, int y0, int x1, int y1)
+void drawLine(int text, int x0, int y0, int x1, int y1) //ребро неориентированный взвешенный граф
 {
 	glColor3f(0.0f, 0.0f, 0.0f);
 	glBegin(GL_LINES);
