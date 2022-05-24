@@ -7,7 +7,7 @@ using namespace std;
 
 int set;
 
-class equals
+class Equals
 {
 public:
 	bool operator() (int tmp)
@@ -30,20 +30,20 @@ int main()
 		cin >> tmp;
 		c1.push_back(tmp);
 	}
-	cout << "\nИзначальный список: ";
+	cout << "\nНачальный список: ";
 	for (c1_Iter = c1.begin(); c1_Iter != c1.end(); c1_Iter++)
 		cout << " " << *c1_Iter;
 	cout << endl;
 	auto min = min_element(c1.begin(), c1.end());
 	set = *min;
 
-	c1.remove_if(equals());
+	c1.remove_if(Equals());
 	c1.push_back(set);
 	cout << "\nМинимальный элемент в конце списка: ";
 	for (c1_Iter = c1.begin(); c1_Iter != c1.end(); c1_Iter++)
 		cout << " " << *c1_Iter;
 	cout << endl;
-	cout << "\nКакой элемент удалить?: ";
+	cout << "\nКакой элемент удалить: ";
 	cin >> tmp;
 	c1.remove(tmp);
 	cout << "После удаления элемента: ";
